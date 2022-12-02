@@ -27,9 +27,15 @@ def get_candidate(candidate_id):
     # возвращает одного кандидата по его id
     for cand in load_candidates():
         if cand['id']==candidate_id:
-            return cand
-        return "Такого кандидата нет"
-print(get_candidate(2))
+            name = cand["name"]
+            position = cand["position"]
+            picture = cand["picture"]
+            skills = cand["skills"]
+
+
+            return name, position, picture, skills
+    return "Такого кандидата нет"
+#print(get_candidate(1))
 
 
 def get_candidates_by_name(candidate_name):
