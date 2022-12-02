@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 from utils import load_candidates_from_json
 from utils import get_candidate
-
+print(get_candidate(4)['name'])
 app = Flask(__name__)
 
 @app.route("/")

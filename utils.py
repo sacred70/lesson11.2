@@ -7,8 +7,6 @@ def load_candidates(file="candidates.json"):
     with open(file, "r", encoding='utf-8') as f:
         text = json.load(f)
         return text
-
-
 #print(load_candidates())
 
 
@@ -27,20 +25,30 @@ def get_candidate(candidate_id):
     # возвращает одного кандидата по его id
     for cand in load_candidates():
         if cand['id']==candidate_id:
-            name = cand["name"]
-            position = cand["position"]
-            picture = cand["picture"]
-            skills = cand["skills"]
+            #name = cand["name"]
+            #position = cand["position"]
+            #picture = cand["picture"]
+            #skills = cand["skills"]
 
 
-            return name, position, picture, skills
-    return "Такого кандидата нет"
-#print(get_candidate(1))
+            return cand #name, position, picture, skills
+
+#print(get_candidate(1)[0])
 
 
 def get_candidates_by_name(candidate_name):
     # возвращает кандидатов по имени
-    pass
+    count=0
+    list_cand={}
+    for cand in load_candidates():
+        if candidate_name in cand['name']:
+            count+=1
+            list_cand[cand["id"]] = cand["name"]
+            return list_cand, count
+#print(get_candidates_by_name('Sheree')[0])
+
+
+
 
 def get_candidates_by_skill(skill_name):
     #  возвращает кандидатов по навыку
