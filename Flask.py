@@ -26,17 +26,27 @@ def single_cand(x):
 
 @app.route("/search/<candidate_name>")
 def search(candidate_name):
-    '''
-    if len(get_candidates_by_name(candidate_name)) < 1:
-        return '<h1>"Кандидата с таким именем не найдено"</h1>'
+    count = int((len(get_candidates_by_name(candidate_name))) / 2)
+    if count == 0:
+        return render_template("no_cand.html")
     else:
-    '''
-    count = int((len(get_candidates_by_name(candidate_name)))/2)
 
-    items = get_candidates_by_name(candidate_name)
-    print(items)
+        if count < 4:
+            id = get_candidates_by_name(candidate_name)["id"]
+            name = get_candidates_by_name(candidate_name)["name"]
+            return render_template("search_1.html", count=count, id=id, name=name)
+        else:
 
-    return render_template("search.html", count=count, items=items)
+            return render_template("search_0.html", count=count, items=get_candidates_by_name(candidate_name))
+
+
+
+
+
+@app.route("/skill/<skill_name>")
+def search_skill(skill_name):
+    pass
+
 
 
 app.run()
