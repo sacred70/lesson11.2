@@ -24,7 +24,7 @@ def load_candidates_from_json(path=load_candidates()):
 def get_candidate(candidate_id):
     # возвращает одного кандидата по его id
     for cand in load_candidates():
-        if cand['id']==candidate_id:
+        if cand['id'] == candidate_id:
             #name = cand["name"]
             #position = cand["position"]
             #picture = cand["picture"]

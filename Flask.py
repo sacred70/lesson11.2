@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template
 from utils import load_candidates_from_json
 from utils import get_candidate
-print(get_candidate(4)['name'])
+from utils import get_candidates_by_name
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -10,17 +11,27 @@ def all_cand():
     return render_template('list.html', items=load_candidates_from_json())
 
 
-@app.route("/candidate/<x>")
+@app.route("/candidate/<int:x>")
 def single_cand(x):
-    name = get_candidate(x)[0]
-    position = get_candidate(x)[1]
-    picture = get_candidate(x)[2]
-    skills = get_candidate(x)[3]
+    name = get_candidate(x)["name"]
+    position = get_candidate(x)["position"]
+    picture = get_candidate(x)["picture"]
+    skills = get_candidate(x)["skills"]
 
     return render_template('single.html',
                            name=name,
                            position=position,
                            picture=picture,
                            skills=skills)
+
+@app.route("/search/<candidate_name>")
+def search(candidate_name):
+    count = get_candidates_by_name(candidate_name)[1]
+
+    if get_candidates_by_name() == 0:
+        return '<h1>"Кандидата с таким именем не найдено"</h1>'
+    else:
+        return render_template("search.html", )
+
 
 app.run()
