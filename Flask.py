@@ -26,12 +26,12 @@ def single_cand(x):
 
 @app.route("/search/<candidate_name>")
 def search(candidate_name):
-    count = get_candidates_by_name(candidate_name)[1]
-
-    if get_candidates_by_name() == 0:
+    count = len(get_candidates_by_name(candidate_name))
+    items = get_candidates_by_name(candidate_name)
+    if len(get_candidates_by_name(candidate_name)) <1 :
         return '<h1>"Кандидата с таким именем не найдено"</h1>'
     else:
-        return render_template("search.html", )
+        return render_template("search.html", count=count, items=items)
 
 
 app.run()

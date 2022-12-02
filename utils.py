@@ -38,14 +38,15 @@ def get_candidate(candidate_id):
 
 def get_candidates_by_name(candidate_name):
     # возвращает кандидатов по имени
-    count=0
-    list_cand={}
+
+    list_cand = {}
     for cand in load_candidates():
         if candidate_name in cand['name']:
-            count+=1
+
             list_cand[cand["id"]] = cand["name"]
-            return list_cand, count
-#print(get_candidates_by_name('Sheree')[0])
+            return list_cand
+x=get_candidates_by_name('Adela')
+print("_".join([str(z) for z in x.keys()]))
 
 
 
