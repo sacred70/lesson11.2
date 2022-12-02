@@ -42,11 +42,12 @@ def get_candidates_by_name(candidate_name):
     list_cand = {}
     for cand in load_candidates():
         if candidate_name in cand['name']:
-
-            list_cand[cand["id"]] = cand["name"]
+            list_cand["id"] = cand["id"]
+            list_cand["name"] = cand["name"]
             return list_cand
-x=get_candidates_by_name('Adela')
-print("_".join([str(z) for z in x.keys()]))
+print(get_candidates_by_name("Adela")['name'])
+
+
 
 
 
