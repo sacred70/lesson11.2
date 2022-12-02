@@ -12,14 +12,24 @@ def load_candidates(file="candidates.json"):
 #print(load_candidates())
 
 
-def load_candidates_from_json(path):
+def load_candidates_from_json(path=load_candidates()):
     #  возвращает список всех кандидатов
-    list_cand = f'< h1 > Все кандидаты < / h1 >\n'
-
+    list_cand ={}
+    for cand in load_candidates():
+        list_cand[cand["id"]] =cand["name"]
+    return list_cand
+#print(load_candidates_from_json())
+#for r in load_candidates_from_json():
+    #print(r, load_candidates_from_json()[r])
+    #print()
 
 def get_candidate(candidate_id):
     # возвращает одного кандидата по его id
-    pass
+    for cand in load_candidates():
+        if cand['id']==candidate_id:
+            return cand
+        return "Такого кандидата нет"
+print(get_candidate(2))
 
 
 def get_candidates_by_name(candidate_name):
