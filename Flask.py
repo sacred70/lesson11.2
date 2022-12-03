@@ -24,6 +24,7 @@ def single_cand(x):
                            picture=picture,
                            skills=skills)
 
+"""
 @app.route("/search/<candidate_name>")
 def search(candidate_name):
     count = int((len(get_candidates_by_name(candidate_name))) / 2)
@@ -38,9 +39,12 @@ def search(candidate_name):
         else:
 
             return render_template("search_0.html", count=count, items=get_candidates_by_name(candidate_name))
+"""
 
-
-
+@app.route("/search/<candidate_name>")
+def search(candidate_name):
+    count = int(len(get_candidates_by_name(candidate_name)))
+    return render_template("search.html", count=count, items=get_candidates_by_name(candidate_name))
 
 
 @app.route("/skill/<skill_name>")

@@ -1,0 +1,8 @@
+<h1>Найдено кандидатов {{count}}</h1>
+{% if count < 1 %}
+    <p>"Такого имени нет"</p>
+{% else %}
+    {% for key, value in items.items() %}
+        <p><a href="/candidate/{{key}}">{{value}}</a></p>
+    {% endfor %}
+{% endif %}
