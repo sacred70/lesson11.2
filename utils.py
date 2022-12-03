@@ -41,10 +41,9 @@ def get_candidates_by_name(candidate_name):
 
     list_cand = {}
     for cand in load_candidates():
-        if candidate_name in cand['name']:
+        if candidate_name.lower() in cand['name'].lower():
             list_cand[cand["id"]] = cand["name"]
-            return list_cand
-        return list_cand
+    return list_cand
 #print(get_candidates_by_name("Adela"))
 
 
@@ -54,5 +53,10 @@ def get_candidates_by_name(candidate_name):
 
 def get_candidates_by_skill(skill_name):
     #  возвращает кандидатов по навыку
-    pass
-
+    list_cand = {}
+    skill = skill_name.lower()
+    for cand in load_candidates():
+        if skill in cand['skills'].lower():
+            list_cand[cand["id"]] = cand["name"]
+    return list_cand
+print(get_candidates_by_skill("PYthon"))

@@ -1,9 +1,11 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template
 from utils import load_candidates_from_json
 from utils import get_candidate
 from utils import get_candidates_by_name
+from utils import get_candidates_by_skill
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def all_cand():
@@ -24,22 +26,6 @@ def single_cand(x):
                            picture=picture,
                            skills=skills)
 
-"""
-@app.route("/search/<candidate_name>")
-def search(candidate_name):
-    count = int((len(get_candidates_by_name(candidate_name))) / 2)
-    if count == 0:
-        return render_template("no_cand.html")
-    else:
-
-        if count < 4:
-            id = get_candidates_by_name(candidate_name)["id"]
-            name = get_candidates_by_name(candidate_name)["name"]
-            return render_template("search_1.html", count=count, id=id, name=name)
-        else:
-
-            return render_template("search_0.html", count=count, items=get_candidates_by_name(candidate_name))
-"""
 
 @app.route("/search/<candidate_name>")
 def search(candidate_name):
@@ -49,8 +35,12 @@ def search(candidate_name):
 
 @app.route("/skill/<skill_name>")
 def search_skill(skill_name):
-    pass
-
+    count = int(len(get_candidates_by_skill(skill_name)))
+    return render_template("search.html", count=count, items=get_candidates_by_skill(skill_name), skill=skill_name)
 
 
 app.run()
+
+
+
+

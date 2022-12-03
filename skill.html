@@ -1,0 +1,8 @@
+<h1>Найдено со скиллом {{skill}}: {{count}}/h1>
+{% if count < 1 %}
+    <p>"Такого скилла нет"</p>
+{% else %}
+    {% for key, value in items.items() %}
+        <p><a href="/candidate/{{key}}">{{value}}</a></p>
+    {% endfor %}
+{% endif %}
